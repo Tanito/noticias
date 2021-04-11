@@ -27,10 +27,10 @@ public abstract class Notice {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotNull (message ="El título es obligatorio")
+    @NotNull(message ="El título es obligatorio")
     private String title;
 
-    @NotBlank (message ="La noticia tiene que tener una descripción")
+    @NotBlank(message ="La noticia tiene que tener una descripción")
     private String description;
 
     @AccessType(AccessType.Type.PROPERTY)

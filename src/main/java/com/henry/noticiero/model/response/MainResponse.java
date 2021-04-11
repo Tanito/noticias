@@ -7,9 +7,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class MainResponse {
     private double temp;
-    private double feelsLike;
-    private double tempMin;
-    private double tempMax;
+    private double feels_like;
+    private double temp_min;
+    private double temp_max;
     private long pressure;
     private long humidity;
 }

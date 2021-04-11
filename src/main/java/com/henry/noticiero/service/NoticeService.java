@@ -30,6 +30,7 @@ public class NoticeService {
     }
 
     public List<Notice> getAll() {
+
         return noticeRepository.findAll();
     }
 

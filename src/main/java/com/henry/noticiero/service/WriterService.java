@@ -8,7 +8,7 @@ import com.henry.noticiero.utils.PostResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -37,8 +37,13 @@ public class WriterService {
             }
 
     public Writer getWriter(Integer id) {
+        try{
+            return writerRepository.findById(id).orElseThrow(null);
 
-        return writerRepository.findById(id).orElseThrow(() -> new HttpClientErrorException(HttpStatus.NOT_FOUND));
+        } catch (Exception e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+
+        }
     }
 
     public List<Writer> getAll(){
@@ -50,7 +55,6 @@ public class WriterService {
         Notice notice = noticiaService.findById(noticeID);
 
         notice.setWriter(writer);
- //       writer.getNoticeList().add(notice);
         writerRepository.save(writer);
     }
 

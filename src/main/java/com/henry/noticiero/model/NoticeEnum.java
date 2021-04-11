@@ -1,6 +1,5 @@
 package com.henry.noticiero.model;
 
-
 public enum NoticeEnum {
 
     ONLY_TEXT("Only text"),
@@ -19,7 +18,7 @@ public enum NoticeEnum {
 
     public static NoticeEnum find(String value){
        for (NoticeEnum n : values()){
-           if (n.toString().equalsIgnoreCase(value)){
+           if (n.getDescription().equalsIgnoreCase(value)){
                return n;
            }
        }
