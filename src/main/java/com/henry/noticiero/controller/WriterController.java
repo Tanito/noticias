@@ -1,9 +1,12 @@
 package com.henry.noticiero.controller;
 
+import com.henry.noticiero.converter.WriterToWriterDTOConvert;
 import com.henry.noticiero.model.Writer;
+import com.henry.noticiero.model.dto.WriterDTO;
 import com.henry.noticiero.service.WriterService;
 import com.henry.noticiero.utils.PostResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.ConversionService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,14 +18,21 @@ public class WriterController {
     @Autowired
     private WriterService writerService;
 
+    @Autowired
+    private ConversionService conversionService;
+
+    @Autowired
+    private WriterToWriterDTOConvert writerToWriterDTOConvert;
+
+
     @GetMapping("/{id}")
-    public Writer getWriter(@PathVariable Integer id) {
-        return writerService.getWriter(id);
+    public WriterDTO getWriterDTOByUD(@PathVariable Integer id){
+        return conversionService.convert(writerService.getWriter(id), WriterDTO.class);
     }
 
     @GetMapping
     public List<Writer> getAll(){
-        return writerService.getAll();
+        return conversionService.convert(writerService.getAll(), List.class);
     }
 
     @PostMapping
